@@ -1,0 +1,12 @@
+services:
+  satcom-orbital-simulator:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      BASIC_AUTH_ENABLED: "false"
+    volumes:
+      # Para ativar autenticação no MVP/demo, defina BASIC_AUTH_ENABLED=true
+      # e monte o arquivo .htpasswd (veja README)
+      - ./.htpasswd:/etc/nginx/.htpasswd:ro
+    restart: unless-stopped
